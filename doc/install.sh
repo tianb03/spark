@@ -1,13 +1,13 @@
 echo 'Spark driver is installing'
 
 echo 'Setting udev rules'
-sudo cp ./rules/70-ttyusb.rules /etc/udev/rules.d/
-sudo cp ./rules/orbbec-usb.rules /etc/udev/rules.d/556-orbbec-usb.rules
-
-echo 'Copying libmsc.so to /usr/lib/'
-sudo cp ../spark_tutorials/spark_iflytek/lib/x64/libmsc.so /usr/lib/
+BASEPATH=$(cd `dirname $0`; pwd)
+sudo cp $BASEPATH/rules/spark-usb-serial.rules /etc/udev/rules.d/
+sudo cp $BASEPATH/rules/orbbec-usb.rules /etc/udev/rules.d/556-orbbec-usb.rules
+sudo udevadm trigger
 
 echo 'Installing required libs'
+sudo apt-get update
 sudo apt-get install ros-indigo-ecl ros-indigo-ecl-threads ros-indigo-rgbd-launch 
 sudo apt-get install ros-indigo-image-common
 sudo apt-get install ros-indigo-move-base-* 

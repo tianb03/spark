@@ -1,7 +1,6 @@
 /*
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2011, Willow Garage, Inc.
  *  Copyright (c) 2016, NXROBO Ltd.
  *  Litian Zhuang <litian.zhuang@nxrobo.com>
  *
@@ -71,22 +70,22 @@ namespace nxsparkbase
 #define VIRTUAL_WALL 162
 
 // Positions
-#define LEFT                		0
-#define RIGHT				1
-#define FRONT_LEFT			2
-#define FRONT_RIGHT			3
-#define CENTER_LEFT			4
-#define CENTER_RIGHT			5
-#define FRONT				6
-#define BACK                		7
-#define CENTER              		8
-#define BACK_LEFT			9
-#define BACK_RIGHT			10
-#define ENDPOS				11
+#define LEFT 0
+#define RIGHT 1
+#define FRONT_LEFT 2
+#define FRONT_RIGHT 3
+#define CENTER_LEFT 4
+#define CENTER_RIGHT 5
+#define FRONT 6
+#define BACK 7
+#define CENTER 8
+#define BACK_LEFT 9
+#define BACK_RIGHT 10
+#define ENDPOS 11
 
-#define OMNI				2
-#define MAIN_BRUSH			2
-#define SIDE_BRUSH			3
+#define OMNI 2
+#define MAIN_BRUSH 2
+#define SIDE_BRUSH 3
 
 // Buttons
 #define BUTTON_CLOCK 7
@@ -113,10 +112,10 @@ namespace nxsparkbase
 #define SPARKBASE_MAX_RADIUS_MM 2000
 
 //! Sparkbase max encoder counts
-#define SPARKBASE_MAX_ENCODER_COUNTS 0xFFFFFFFF
+#define SPARKBASE_MAX_ENCODER_COUNTS 0xFFFFFFF
 //! Sparkbase encoder pulses to meter constant
-#define SPARKBASE_PULSES_TO_M 0.0002167
-#define SPARKBASE_PULSES_TO_MM 0.2167
+#define SPARKBASE_PULSES_TO_M 0.00028885
+#define SPARKBASE_PULSES_TO_MM 0.28885
 #define MAX_PATH 32
 
 #ifndef MIN
@@ -278,11 +277,11 @@ public:
   bool bumper_[ENDPOS];     //! Bumper sensors. Indexes: LEFT RIGHT
   bool ir_bumper_[ENDPOS];  //! IR bumper sensors. Indexes: LEFT FRONT_LEFT
   // CENTER_LEFT CENTER_RIGHT FRONT_RIGHT RIGHT
-  bool wheel_over_current_[2];				//! Wheel current over: Indexes: LEFT RIGHT
-  bool wheel_drop_[2];   //! Wheel drop sensors: Indexes: LEFT RIGHT
-  bool omni_[ENDPOS];    //! omni wheel sensors: Indexes: FRONT BACK
-  int wall_signal_;      //! Wall signal.
-  int cliff_signal_[4];  //! CLiff sensors signal. Indexes: LEFT FRONT_LEFT
+  bool wheel_over_current_[2];  //! Wheel current over: Indexes: LEFT RIGHT
+  bool wheel_drop_[2];          //! Wheel drop sensors: Indexes: LEFT RIGHT
+  bool omni_[ENDPOS];           //! omni wheel sensors: Indexes: FRONT BACK
+  int wall_signal_;             //! Wall signal.
+  int cliff_signal_[4];         //! CLiff sensors signal. Indexes: LEFT FRONT_LEFT
   // FRONT_RIGHT RIGHT
   int ir_bumper_signal_[6];  //! IR bumper sensors signal. Indexes: LEFT
   // FRONT_LEFT CENTER_LEFT CENTER_RIGHT FRONT_RIGHT
@@ -312,12 +311,12 @@ public:
   float charge_;      //! Battery charge in Ah.
   float capacity_;    //! Battery capacity in Ah
 
-  bool search_dock_;              //! search dock 
-  bool touch_charge_;             //! touch charge
-  bool plug_charge_;              //! plug charge
-  bool dock_direction_[ENDPOS];   //! dock direction 
+  bool search_dock_;             //! search dock
+  bool touch_charge_;            //! touch charge
+  bool plug_charge_;             //! plug charge
+  bool dock_direction_[ENDPOS];  //! dock direction
 
-  int stasis_;             //! 1 when the robot is going forward, 0 otherwise
+  int stasis_;                //! 1 when the robot is going forward, 0 otherwise
   unsigned int current_time;  //! diff time.
 private:
   //! Parse data
@@ -404,6 +403,7 @@ private:
   unsigned int last_encoder_counts_[2];
 
   int parseWheelDiffTime(unsigned char *buffer, int index);
+  bool is_first_time_left, is_first_time_right;
 };
 }
 
